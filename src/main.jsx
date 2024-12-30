@@ -9,6 +9,7 @@ import CheckOut from './Pages/CheckOut.jsx'
 import About from './Pages/About.jsx'
 import Login from './Pages/Login.jsx'
 import Signup from './Pages/Signup.jsx'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 // import CartState from './Context/CartState.js'
 
