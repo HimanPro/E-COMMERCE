@@ -143,7 +143,7 @@ const Home = () => {
                 </SkeletonTheme>)
                 :
                 (<>
-                    <div className="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md">
+                    <div className="flex items-center justify-between flex-wrap bg-gray-100 p-4 rounded-lg shadow-md">
                         {/* Jump to Page */}
                         <div className="flex items-center gap-2">
                             <label htmlFor="jump" className="text-gray-700 font-medium">
