@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import cartContext from '../Context/CartContext';
@@ -19,6 +19,7 @@ const Home = () => {
     const currentProduct = element.slice(firstProductIndex, lastProductIndex)
 
     let pagination = new Array(Math.ceil(element.length / productPerPage)).fill(0)
+    
 
     const handelProductPage = (index) => {
         setcurrentPage(index + 1)
@@ -63,12 +64,17 @@ const Home = () => {
         }
     };
 
-    const handleJumpToPage = (e) => {
-        let pageNumber = e.target.value;
-        // console.log(typeof pageNumber);
-        if (PageNumber => 1) {
-            setcurrentPage(+pageNumber)
+
+ let handleJumpToPageNumber = useRef()
+
+
+    const handleJumpToPage = () => {
+        let pageNumber = Number(handleJumpToPageNumber.current.value)
+        console.log(pageNumber);
+        if (pageNumber >= 1 && pageNumber <= pagination.length) {
+            setcurrentPage(pageNumber)
             getAllData()
+
         }
         else {
             getAllData()
@@ -153,10 +159,26 @@ const Home = () => {
                                 id="jump"
                                 type="number"
                                 placeholder="Page No."
-                                value={currentPage}
-                                onChange={handleJumpToPage}
+                                
+                               ref={handleJumpToPageNumber}
                                 className="w-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
                             />
+                             <button className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition" onClick={handleJumpToPage}>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    className="w-5 h-5 text-gray-700"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M10 19l-7-7m0 0l7-7m-7 7h16"
+                                    />
+                                </svg>
+                            </button>
                         </div>
 
                         {/* Previous and Next Buttons */}
